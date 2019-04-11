@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C3E31F05225FD43100577B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E31F04225FD43100577B4C /* AppDelegate.swift */; };
-		C3E31F07225FD43100577B4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E31F06225FD43100577B4C /* ViewController.swift */; };
 		C3E31F0A225FD43100577B4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3E31F08225FD43100577B4C /* Main.storyboard */; };
 		C3E31F0C225FD43200577B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3E31F0B225FD43200577B4C /* Assets.xcassets */; };
 		C3E31F0F225FD43200577B4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3E31F0D225FD43200577B4C /* LaunchScreen.storyboard */; };
@@ -17,7 +16,6 @@
 /* Begin PBXFileReference section */
 		C3E31F01225FD43100577B4C /* YikkityYakkity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YikkityYakkity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E31F04225FD43100577B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C3E31F06225FD43100577B4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C3E31F09225FD43100577B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C3E31F0B225FD43200577B4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3E31F0E225FD43200577B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,14 +52,29 @@
 		C3E31F03225FD43100577B4C /* YikkityYakkity */ = {
 			isa = PBXGroup;
 			children = (
-				C3E31F04225FD43100577B4C /* AppDelegate.swift */,
-				C3E31F06225FD43100577B4C /* ViewController.swift */,
-				C3E31F08225FD43100577B4C /* Main.storyboard */,
-				C3E31F0B225FD43200577B4C /* Assets.xcassets */,
-				C3E31F0D225FD43200577B4C /* LaunchScreen.storyboard */,
-				C3E31F10225FD43200577B4C /* Info.plist */,
+				C3E31F16225FD44100577B4C /* Storyboards */,
+				C3E31F17225FD44D00577B4C /* Resources */,
 			);
 			path = YikkityYakkity;
+			sourceTree = "<group>";
+		};
+		C3E31F16225FD44100577B4C /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C3E31F08225FD43100577B4C /* Main.storyboard */,
+				C3E31F0D225FD43200577B4C /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C3E31F17225FD44D00577B4C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C3E31F04225FD43100577B4C /* AppDelegate.swift */,
+				C3E31F0B225FD43200577B4C /* Assets.xcassets */,
+				C3E31F10225FD43200577B4C /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +148,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3E31F07225FD43100577B4C /* ViewController.swift in Sources */,
 				C3E31F05225FD43100577B4C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +296,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23QW9JU9DK;
-				INFOPLIST_FILE = YikkityYakkity/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/YikkityYakkity/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +314,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23QW9JU9DK;
-				INFOPLIST_FILE = YikkityYakkity/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/YikkityYakkity/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
