@@ -13,7 +13,7 @@
         <!--Feed-->
         <scene sceneID="App-gu-65K">
             <objects>
-                <tableViewController id="GKP-21-KZJ" sceneMemberID="viewController">
+                <tableViewController id="GKP-21-KZJ" customClass="PostListTableViewController" customModule="YikkityYakkity" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zYG-Kb-KSQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                         <color key="separatorColor" red="0.20595327019691467" green="0.64870214462280273" blue="0.61752068996429443" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.7831459641456604" green="0.83284550905227661" blue="0.75820225477218628" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="208" id="I6k-ML-hzg">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="208" id="I6k-ML-hzg" customClass="PostTableViewCell" customModule="YikkityYakkity" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="208"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I6k-ML-hzg" id="pn4-Oz-Jrw">
@@ -41,6 +41,9 @@
                                                     <state key="normal" title="Button" image="singleUp">
                                                         <color key="titleColor" red="0.56202930210000002" green="0.78334778549999995" blue="0.6433670521" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="upvoteButtonTapped:" destination="I6k-ML-hzg" eventType="touchUpInside" id="xfX-IN-hx0"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Jh-zs-lIv">
                                                     <rect key="frame" x="0.0" y="46" width="46" height="42"/>
@@ -56,6 +59,9 @@
                                                     </constraints>
                                                     <color key="tintColor" red="0.18163812160000001" green="0.57393574709999995" blue="0.55081474779999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Button" image="singleDown"/>
+                                                    <connections>
+                                                        <action selector="downvoteButtonTapped:" destination="I6k-ML-hzg" eventType="touchUpInside" id="1Ln-ah-mqG"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -76,6 +82,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="pointTotalLabel" destination="6Jh-zs-lIv" id="8sN-q8-jkr"/>
+                                    <outlet property="postTextLabel" destination="pxm-ku-DPC" id="ZA8-5K-kUy"/>
                                     <segue destination="BYZ-38-t0r" kind="show" id="KBp-ZR-Y9Z"/>
                                 </connections>
                             </tableViewCell>
@@ -88,9 +96,15 @@
                     <navigationItem key="navigationItem" title="Feed" id="7wU-yc-Mzi">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="Ian-vo-Sl6">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="GKP-21-KZJ" id="YpS-YI-8ki"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="wgY-XE-Vor">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="createNewPostButtonTapped:" destination="GKP-21-KZJ" id="xhw-Js-feT"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
@@ -120,10 +134,10 @@
             </objects>
             <point key="canvasLocation" x="-2746" y="-1223"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="YikkityYakkity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DetailViewController" customModule="YikkityYakkity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -158,6 +172,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="postTextLabel" destination="EE5-pY-rKZ" id="Z18-1z-1E6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
