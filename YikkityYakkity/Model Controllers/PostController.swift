@@ -72,6 +72,8 @@ class PostController{
             completion(posts)
         }
     }
-    
-    
+    //MARK: - TODO For Saturday
+    //CREATE UPDATE FUNCTION
+    //READ CloudKit Documentation on updating CKRecords
+    //Implement this where score is changed.\
 }
