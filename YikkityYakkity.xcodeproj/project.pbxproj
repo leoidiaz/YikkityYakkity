@@ -16,6 +16,7 @@
 		C3E31F21225FFFD800577B4C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E31F20225FFFD800577B4C /* DetailViewController.swift */; };
 		C3E31F232260007000577B4C /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E31F222260007000577B4C /* PostController.swift */; };
 		C3E31F252260007900577B4C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E31F242260007900577B4C /* Post.swift */; };
+		C3E31F2922600EB800577B4C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E31F2822600EB800577B4C /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		C3E31F20225FFFD800577B4C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C3E31F222260007000577B4C /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		C3E31F242260007900577B4C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		C3E31F2622600EB200577B4C /* YikkityYakkity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YikkityYakkity.entitlements; sourceTree = "<group>"; };
+		C3E31F2822600EB800577B4C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3E31F2922600EB800577B4C /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +52,7 @@
 			children = (
 				C3E31F03225FD43100577B4C /* YikkityYakkity */,
 				C3E31F02225FD43100577B4C /* Products */,
+				C3E31F2722600EB800577B4C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +67,7 @@
 		C3E31F03225FD43100577B4C /* YikkityYakkity */ = {
 			isa = PBXGroup;
 			children = (
+				C3E31F2622600EB200577B4C /* YikkityYakkity.entitlements */,
 				C3E31F1B225FFC6300577B4C /* View Controllers */,
 				C3E31F1A225FFC5C00577B4C /* Views */,
 				C3E31F19225FFC5B00577B4C /* Model Controllers */,
@@ -124,6 +130,14 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		C3E31F2722600EB800577B4C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3E31F2822600EB800577B4C /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,6 +170,14 @@
 				TargetAttributes = {
 					C3E31F00225FD43100577B4C = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -346,6 +368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YikkityYakkity/YikkityYakkity.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23QW9JU9DK;
 				INFOPLIST_FILE = "$(SRCROOT)/YikkityYakkity/Resources/Info.plist";
@@ -364,6 +387,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YikkityYakkity/YikkityYakkity.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23QW9JU9DK;
 				INFOPLIST_FILE = "$(SRCROOT)/YikkityYakkity/Resources/Info.plist";
