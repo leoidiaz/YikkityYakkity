@@ -9,11 +9,19 @@
 import Foundation
 enum YikkityError: LocalizedError {
     case ckError(Error)
-    
+    case couldNotUnwrap
+    case unexpectedRecordsFound
+    case unableLocateDeletedIDs
     var errorDescription: String {
         switch self {
         case .ckError(let error):
             return error.localizedDescription
+        case .couldNotUnwrap:
+            return "Was not able to unwrap CK Record"
+        case .unexpectedRecordsFound:
+            return "Not the record behavior we were expecting"
+        case .unableLocateDeletedIDs:
+            return "No record ID found from delete"
         }
     }
 }

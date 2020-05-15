@@ -9,57 +9,106 @@
 import UIKit
 
 class PostListTableViewController: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        fetchPosts()
     }
-
+    
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return PostController.shared.posts.count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as? PostTableViewCell else {return UITableViewCell()}
+        
+        let post = PostController.shared.posts[indexPath.row]
+        cell.post = post
+        
         return cell
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let postToDelete = PostController.shared.posts[indexPath.row]
+            guard let index = PostController.shared.posts.firstIndex(of: postToDelete) else { return }
+            PostController.shared.deletePost(post: postToDelete) { (result) in
+                switch result {
+                case .success(_):
+                    PostController.shared.posts.remove(at: index)
+                    DispatchQueue.main.async {
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    }
+                case .failure(let error):
+                    print(error)
+                    print(error.errorDescription)
+                }
+            }
+        }
+    }
+    
     //MARK: = Bar Button Items
     @IBAction func createNewPostButtonTapped(_ sender: Any) {
-        
+        presentAlertController(title: "Get Yikkity Yakkity", message: "Share your post")
     }
     
     @IBAction func refreshButtonTapped(_ sender: Any) {
-        
+        fetchPosts()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - Helper Methods
+    func fetchPosts(){
+        PostController.shared.fetchPosts { (result) in
+            DispatchQueue.main.async {
+                switch result{
+                case .success(_):
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    print(error)
+                    print(error.errorDescription)
+                }
+            }
+        }
     }
-    */
-
+    
+    func presentAlertController(title: String, message: String){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Put your message here! 🐏🐏🐏"
+        }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter author name -- hopefully not you..."
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let postAction = UIAlertAction(title: "Post", style: .default) { (_) in
+            guard let bodyText = alertController.textFields?[0].text, !bodyText.isEmpty, let author = alertController.textFields?[1].text, !author.isEmpty else { return }
+            PostController.shared.createPost(text: bodyText, author: author) { [weak self] (result) in
+                switch result{
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error.errorDescription)
+                }
+            }
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(postAction)
+        present(alertController, animated: true)
+        
+    }
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailVC" {
+            guard let indexPath = tableView.indexPathForSelectedRow, let destinationVC = segue.destination as? DetailViewController else { return }
+            let post = PostController.shared.posts[indexPath.row]
+            destinationVC.post = post
+        }
+    }
+    
 }
